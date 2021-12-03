@@ -1,7 +1,7 @@
 void(* resetFunc) (void) = 0;
 //Defining connections for the motors
 #define in1 3    //in1 (H-board) connected with 2 (Arduino)   Left
-#define in2 5    //in2 (H-board) connected with 4 (Arduino)   Left                Probably change these values up here
+#define in2 5    //in2 (H-board) connected with 4 (Arduino)   Left
 #define in3 6    //in3 (H-board) connected with 7 (Arduino)   Right
 #define in4 8    //in4 (H-board) connected with 8 (Arduino)   Right
 
@@ -105,7 +105,6 @@ double FindWall()
         Serial.println("Repositioning Start...");
         Serial.println("Failsafe enabled");
         //Implement motors to either go foward by a little bit or spin to readjust itself
-//       Realign ();
         resetFunc();
       }
     }
@@ -225,7 +224,7 @@ void Approach()
   int Right=0;
   int Left=0;
   analogWrite(in1,250);
-  analogWrite(in3,250);                   //           I think these are reversed but I would have to test it 
+  analogWrite(in3,250);
   delay(Tim*100);                  //either times 10 or 100
   analogWrite(in1,0);
   analogWrite(in3,0);
@@ -308,15 +307,13 @@ void LRCompare()
   if (LSide==RSide)  //I might set it to turn another direction (back it up and rescan) if it does not have enough distance to turn in either direction
   {
     Serial.println("Confused");
-    if (Left<20||Right<20)                                                                                          //Backs up if either left or right are less than 20, otherwise it automatically turns left
+    if (Left<20||Right<20)
     {
-//      analogWrite();
-//      analogWrite();                Reverse slightly, probably 5cm back
     }
     else
     {
     //Turn Left
-    Serial.println("Turning Left"); //I just put these to test but I do need to get the numbers at some point
+    Serial.println("Turning Left"); //I just put these to test
     Serial.println(Left);
     Serial.println(Right);
     myservo.write(0);
